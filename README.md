@@ -1,4 +1,4 @@
-This is a simple text based game written in kotlin that mimics the original Master Mind board game.
+This is a simple text based game written in kotlin that mimics the original Master Mind board game, and it was developed as a first project in the scope of Programming unit course of ISEL Computer Science and Computer Engineering BSc.
 
 The objective of this game is to guess the exact sequence of characters generated randomly by the computer. This sequence is composed by a set of four unique characters (no duplicated) ranging from 'A' to 'F' (by default).
 
