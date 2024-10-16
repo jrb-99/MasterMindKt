@@ -30,7 +30,7 @@ fun generateSecret(): String{
 
     while(secret.length < SIZE_POSITIONS){
 
-        var rand = COLORS.random()
+        var rand = COLORS.random().toString()
         if(!secret.contains(rand)){
             secret += rand
         }
@@ -64,11 +64,11 @@ fun readGuess(numTries: Int): String{
             continue
         }
 
-        if(arr.distinct().lastIndex+1 != SIZE_POSITIONS){
+        /*if(arr.distinct().lastIndex+1 != SIZE_POSITIONS){
             println(arr.distinct().lastIndex)
             println("O seu palpite nao deve conter caractéres repetidos")
             continue
-        }
+        }*/
 
         break
 
@@ -82,7 +82,7 @@ fun getCorrects(guess: String, secret: String): Int{
     var corrects = 0
 
     for(i in 0 .. SIZE_POSITIONS-1){
-        if(secret.contains(guess[i])){
+        if(secret[i] == guess[i]){
             corrects++
         }
     }
@@ -108,6 +108,6 @@ fun getSwapped(guess: String, secret: String): Int{
 
 fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
 
-    println("Voce tem $numTries tentativas. O seu palpite foi $guess. Acertou em $corrects caractéres. $swapped deles estao trocados")
+    println("${numTries}ª: $guess -> ${corrects}C + ${swapped}T")
 
 }
