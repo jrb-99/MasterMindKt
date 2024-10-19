@@ -11,7 +11,7 @@ fun main(){
     println("Descubra o código em $MAX_TRIES tentativas.")
     println("$SIZE_POSITIONS posições e $SIZE_COLORS cores $COLORS")
     for (numTries in 1..MAX_TRIES) {
-        val guess = readGuess(numTries)
+        val guess = readGuess(numTries, secret)
         if (guess == secret) {
             println("Parabéns!\nAcertou à ${numTries}ª tentativa.")
             return
@@ -40,7 +40,7 @@ fun generateSecret(): String{
     return secret
 }
 
-fun readGuess(numTries: Int): String{
+fun readGuess(numTries: Int, secret: String): String{
 
     var guess: String = ""
     var lastChar = COLORS.last
@@ -50,8 +50,8 @@ fun readGuess(numTries: Int): String{
 
         var tries = MAX_TRIES - numTries + 1
 
-        println("Insira o seu palpite. Tem $tries tentativas.")
-        guess = readln().uppercase()
+        println("Insira o seu palpite. Tem $tries tentativas. O segredo é: $secret")
+        guess = readln()
         var arr = guess.toCharArray()
 
         if(guess.length < SIZE_POSITIONS || guess.length > SIZE_POSITIONS){
@@ -63,12 +63,6 @@ fun readGuess(numTries: Int): String{
             println("O seu paplite contém caractéres inválidos.")
             continue
         }
-
-        /*if(arr.distinct().lastIndex+1 != SIZE_POSITIONS){
-            println(arr.distinct().lastIndex)
-            println("O seu palpite nao deve conter caractéres repetidos")
-            continue
-        }*/
 
         break
 
@@ -95,10 +89,16 @@ fun getSwapped(guess: String, secret: String): Int{
 
     var swapped = 0
 
-    for(i in 0 .. SIZE_POSITIONS-1){
-        if(secret.contains(guess[i])){
-            if(!secret[i].equals(guess[i]))
-            swapped++
+    var dist = guess.toCharArray().distinct()
+
+    for(i in 0 .. SIZE_POSITIONS - 1){
+        for(j in 0 .. dist.size - 1){
+            if(!secret[i].equals(dist[j])){
+                continue
+            }
+            if(!secret[i].equals(guess[i])){
+                swapped++
+            }
         }
     }
 
