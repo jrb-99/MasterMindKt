@@ -64,11 +64,11 @@ fun readGuess(numTries: Int): String{
             continue
         }
 
-        if(arr.distinct().lastIndex+1 != SIZE_POSITIONS){
-            println(arr.distinct().lastIndex)
-            println("O seu palpite nao deve conter caractéres repetidos")
-            continue
-        }
+//        if(arr.distinct().lastIndex+1 != SIZE_POSITIONS){
+//            println(arr.distinct().lastIndex)
+//            println("O seu palpite nao deve conter caractéres repetidos")
+//            continue
+//        }
 
         break
 
@@ -90,11 +90,13 @@ fun getCorrects(guess: String, secret: String): Int{
 fun getSwapped(guess: String, secret: String): Int{
 
     var swapped = 0
+    var aux = arrayOf<Char>()
     for (i in 0..<guess.length){
-        if (getCorrects(guess[i].toString(), secret[i].toString()) == 0){
-            if(secret.contains(guess[i])){
-                swapped++
-            }
+        if (getCorrects(guess[i].toString(), secret[i].toString()) == 0 &&
+            secret.contains(guess[i]) &&
+            !aux.contains(guess[i])){
+            aux += guess[i]
+            swapped++
         }
     }
     return swapped
