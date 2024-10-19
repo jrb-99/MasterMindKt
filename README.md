@@ -12,6 +12,6 @@ The player has a limited number of attempts to guess correctly the "secret" word
 
 - example 4: Secret word: "AEBD", Player guess: "BBAA", Correct characters: 0, Swapped characters: 2
 
-The guess must be valid, meaning the game will only proceed when the player inputs a guess that meets the requirements (Only characters within the defined range and an exact number of characters, four by defautl)
+The guess must be valid, meaning the game will only proceed when the player inputs a guess that meets the requirements (Only characters within the defined range and an exact number of characters, four by default)
 
 All the constants that define how the game will work are set in the beggining of the program, and may be changed as the player wishes, maintaining the game logic.
