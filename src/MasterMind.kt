@@ -6,7 +6,7 @@ val COLORS = FIRST_COLOR ..< FIRST_COLOR+SIZE_COLORS
 
 fun main(){
 
-    val secret: String = generateSecret()
+    val secret: String = "CAFE"//generateSecret()
 
     println("Descubra o código em $MAX_TRIES tentativas.")
     println("$SIZE_POSITIONS posições e $SIZE_COLORS cores $COLORS")
@@ -78,32 +78,26 @@ fun readGuess(numTries: Int): String{
 }
 
 fun getCorrects(guess: String, secret: String): Int{
-
     var corrects = 0
-
-    for(i in 0 .. SIZE_POSITIONS-1){
-        if(secret.contains(guess[i])){
+    for (i in 0..<guess.length){
+        if(guess[i] == secret[i]){
             corrects++
         }
     }
-
     return corrects
-
 }
 
 fun getSwapped(guess: String, secret: String): Int{
 
     var swapped = 0
-
-    for(i in 0 .. SIZE_POSITIONS-1){
-        if(secret.contains(guess[i])){
-            if(!secret[i].equals(guess[i]))
-            swapped++
+    for (i in 0..<guess.length){
+        if (getCorrects(guess[i].toString(), secret[i].toString()) == 0){
+            if(secret.contains(guess[i])){
+                swapped++
+            }
         }
     }
-
     return swapped
-
 }
 
 fun printTry(numTries: Int, guess: String, corrects: Int, swapped: Int){
