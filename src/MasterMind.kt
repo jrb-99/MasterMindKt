@@ -2,6 +2,7 @@ const val MAX_TRIES = 10 // in 5..20
 const val SIZE_POSITIONS = 4 // in 2..6
 const val SIZE_COLORS = 6 // in 2..10 and >= SIZE_POSITIONS
 const val FIRST_COLOR = 'A' // ‘A’ or ‘a’ or ‘0’
+const val DEBUG = false // 'true' show secret in each play, 'false' doesn't show secret until you guess it or lose the game
 val COLORS = FIRST_COLOR ..< FIRST_COLOR+SIZE_COLORS
 
 fun main(){
@@ -50,7 +51,8 @@ fun readGuess(numTries: Int, secret: String): String{
 
         var tries = MAX_TRIES - numTries + 1
 
-        println("Insira o seu palpite. Tem $tries tentativas. O segredo é: $secret")
+        val log = if (!DEBUG) "Insira o seu palpite. Tem $tries tentativas." else "Insira o seu palpite. Tem $tries tentativas. O segredo é: $secret"
+        println(log)
         guess = readln()
         var arr = guess.toCharArray()
 
